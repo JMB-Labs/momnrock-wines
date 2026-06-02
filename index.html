@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MomNrock Wines — Celebremos La Buena Vida</title>
+<meta name="description" content="MomNrock Wines — a family-owned private-label wine house founded in 2018 by Jenny Bonnevie-Bautista. Spanish wines tuned for the Filipino palate." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #F4EDDD;
+    --bg-soft: #EFE6CE;
+    --bg-deep: #2B1417;
+    --burgundy: #7B1E2E;
+    --burgundy-deep: #5A1422;
+    --accent: #B22234;
+    --gold: #A88A3F;
+    --gold-soft: #C9B27A;
+    --charcoal: #2B2B2B;
+    --muted: #6B6B6B;
+    --line: #D8CDB0;
+
+    --serif: 'Cormorant Garamond', 'Garamond', 'EB Garamond', Georgia, serif;
+    --body:  'Lora', 'Georgia', serif;
+    --script:'Pinyon Script', 'Brush Script MT', cursive;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--charcoal);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Subtle paper texture using SVG noise */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: .12;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============ NAV ============ */
+  nav.top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(244, 237, 221, 0.78);
+    border-bottom: 1px solid rgba(122, 30, 46, 0.08);
+    transition: padding .3s ease;
+  }
+  nav.top .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .wordmark {
+    font-family: var(--script);
+    font-size: 30px;
+    color: var(--burgundy);
+    line-height: 1;
+    letter-spacing: .5px;
+    text-decoration: none;
+  }
+  nav.top ul {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+    margin: 0; padding: 0;
+  }
+  nav.top a {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  nav.top a:hover { color: var(--burgundy); }
+  @media (max-width: 720px) {
+    nav.top ul { gap: 18px; }
+    nav.top a { font-size: 12px; letter-spacing: 1px; }
+    .wordmark { font-size: 26px; }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 32px 80px;
+    position: relative;
+  }
+  .hero .establishment {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+  .hero .brand {
+    font-family: var(--script);
+    color: var(--burgundy);
+    font-size: clamp(72px, 14vw, 156px);
+    line-height: 1;
+    margin: 0 0 28px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+  }
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 32px auto;
+  }
+  .ornament .line {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    opacity: .6;
+  }
+  .ornament .diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    opacity: .7;
+  }
+  .hero .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(22px, 3.4vw, 30px);
+    color: var(--burgundy-deep);
+    font-weight: 400;
+    margin: 0 0 14px;
+    max-width: 760px;
+  }
+  .hero .salud {
+    font-family: var(--script);
+    color: var(--accent);
+    font-size: clamp(28px, 4vw, 42px);
+    margin: 0 0 64px;
+  }
+  .scroll-cue {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .scroll-cue::after {
+    content: "";
+    width: 1px;
+    height: 36px;
+    background: var(--gold);
+    opacity: .5;
+    animation: fade-down 2.2s ease-in-out infinite;
+  }
+  @keyframes fade-down {
+    0%, 100% { opacity: 0; transform: translateY(-6px); }
+    50% { opacity: .8; transform: translateY(6px); }
+  }
+
+  /* ============ SECTIONS ============ */
+  section.block {
+    padding: 120px 0;
+    position: relative;
+  }
+  section.block.tinted {
+    background: var(--bg-soft);
+  }
+  section.block.dark {
+    background: var(--bg-deep);
+    color: #E9DDC7;
+  }
+  section.block.dark .eyebrow { color: var(--gold-soft); }
+  section.block.dark h2 { color: #F4EDDD; }
+  section.block.dark .lede { color: #D9CCB1; }
+  section.block.dark .ornament .line { background: var(--gold-soft); }
+  section.block.dark .ornament .diamond { background: var(--gold-soft); }
+
+  .eyebrow {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    text-align: center;
+    margin: 0 0 16px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 5.6vw, 56px);
+    line-height: 1.15;
+    color: var(--charcoal);
+    text-align: center;
+    margin: 0 0 24px;
+  }
+  h2 em {
+    font-style: italic;
+    color: var(--burgundy);
+  }
+  .lede {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 56px;
+    font-family: var(--body);
+    font-size: 19px;
+    color: var(--charcoal);
+    line-height: 1.7;
+  }
+
+  /* ============ STORY ============ */
+  .story-prose {
+    max-width: 740px;
+    margin: 0 auto;
+    font-family: var(--body);
+    font-size: 19px;
+    line-height: 1.85;
+    color: var(--charcoal);
+  }
+  .story-prose p { margin: 0 0 22px; }
+  .story-prose .first-letter::first-letter {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 78px;
+    float: left;
+    line-height: .85;
+    padding: 10px 14px 0 0;
+    color: var(--burgundy);
+  }
+  .signature-block {
+    text-align: center;
+    margin-top: 64px;
+  }
+  .signature-block .signed {
+    font-family: var(--script);
+    font-size: 44px;
+    color: var(--burgundy);
+    line-height: 1;
+  }
+  .signature-block .role {
+    font-family: var(--serif);
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  /* ============ WINES ============ */
+  .wines-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    margin-top: 24px;
+  }
+  @media (max-width: 880px) {
+    .wines-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+  .wine-card {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--line);
+    padding: 44px 32px 36px;
+    text-align: center;
+    position: relative;
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .wine-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px -28px rgba(122, 30, 46, 0.35);
+  }
+  .wine-card::before, .wine-card::after {
+    content: "";
+    position: absolute;
+    width: 24px; height: 24px;
+    border: 1px solid var(--gold);
+    opacity: .5;
+  }
+  .wine-card::before { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+  .wine-card::after  { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+  .wine-card .bottle {
+    display: block;
+    height: 240px;
+    width: auto;
+    max-width: 72%;
+    object-fit: contain;
+    margin: 4px auto 26px;
+    filter: drop-shadow(0 18px 26px rgba(43, 20, 23, 0.20));
+  }
+  .wine-card .bottle-placeholder {
+    height: 240px;
+    margin: 4px auto 26px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .wine-card .bottle-placeholder span {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    opacity: .55;
+  }
+  .wine-card .origin {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .wine-card h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 30px;
+    color: var(--burgundy);
+    line-height: 1.15;
+    margin: 0 0 6px;
+  }
+  .wine-card .sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 22px;
+  }
+  .wine-card p {
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    margin: 0 0 18px;
+  }
+  .wine-card .pairing {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+    margin-top: 18px;
+  }
+  .wine-card .pairing strong {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 600;
+    color: var(--burgundy);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 11px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ============ HOTELS ============ */
+  .hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 56px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  @media (max-width: 720px) {
+    .hotels-grid { grid-template-columns: 1fr; }
+  }
+  .service {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .service .num {
+    font-family: var(--serif);
+    font-weight: 500;
+    color: var(--gold-soft);
+    font-size: 30px;
+    line-height: 1;
+    min-width: 36px;
+    font-style: italic;
+  }
+  .service h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    color: #F4EDDD;
+    font-size: 21px;
+    margin: 0 0 6px;
+    line-height: 1.25;
+  }
+  .service p {
+    font-family: var(--body);
+    color: #C7B894;
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact-card {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 48px 32px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.5);
+    position: relative;
+  }
+  .contact-card::before, .contact-card::after {
+    content: "";
+    position: absolute;
+    width: 28px; height: 28px;
+    border: 1px solid var(--gold);
+    opacity: .6;
+  }
+  .contact-card::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+  .contact-card::after  { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+  .contact-card .label {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .contact-card .value {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--burgundy);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .contact-card .value a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+  }
+  .contact-card .value a:hover { border-color: var(--burgundy); }
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    opacity: .5;
+    margin: 0 auto 24px;
+  }
+
+  /* ============ QUOTE FORM ============ */
+  .quote-form {
+    max-width: 680px;
+    margin: 0 auto 44px;
+    text-align: left;
+  }
+  .quote-form .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .field { margin-bottom: 20px; }
+  .field label {
+    display: block;
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--charcoal);
+    font-family: var(--body);
+    font-size: 16px;
+    border-radius: 0;
+    transition: border-color .2s ease, background .2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .field textarea { resize: vertical; min-height: 120px; }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--burgundy);
+    background: #fff;
+  }
+  .field select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%237B1E2E' fill='none' stroke-width='1.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+  .quote-form .submit-row { text-align: center; }
+  .btn-quote {
+    display: inline-block;
+    font-family: var(--serif);
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #F4EDDD;
+    background: var(--burgundy);
+    border: none;
+    padding: 16px 48px;
+    cursor: pointer;
+    transition: background .2s ease;
+  }
+  .btn-quote:hover { background: var(--burgundy-deep); }
+  .form-note {
+    font-family: var(--body);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 18px;
+    text-align: center;
+  }
+  .form-ok {
+    display: none;
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--burgundy);
+    margin-top: 18px;
+    text-align: center;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--bg-deep);
+    color: #C7B894;
+    text-align: center;
+    padding: 56px 32px 36px;
+  }
+  footer .wordmark-foot {
+    font-family: var(--script);
+    color: var(--gold-soft);
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 18px;
+  }
+  footer .tag {
+    font-family: var(--serif);
+    font-style: italic;
+    color: #E0D2B0;
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+  footer .ornament .line { background: var(--gold-soft); }
+  footer .ornament .diamond { background: var(--gold-soft); }
+  footer .meta {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #8C7E5C;
+    margin-top: 24px;
+  }
+  footer .meta a { color: var(--gold-soft); text-decoration: none; }
+  footer .socials {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 4px;
+  }
+  footer .socials a {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: border-color .2s ease;
+  }
+  footer .socials a:hover { border-color: var(--gold-soft); }
+
+  /* ============ REVEAL ANIMATIONS ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .9s ease, transform .9s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ===== Presentation Boxes ===== */
+  .boxes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-top: 24px;
+  }
+  @media (max-width: 880px) {
+    .boxes-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+  .box-card {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--line);
+    padding: 40px 34px 34px;
+    text-align: center;
+    position: relative;
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .box-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px -28px rgba(122, 30, 46, 0.35);
+  }
+  .box-card::before, .box-card::after {
+    content: "";
+    position: absolute;
+    width: 24px; height: 24px;
+    border: 1px solid var(--gold);
+    opacity: .5;
+  }
+  .box-card::before { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+  .box-card::after  { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+  .box-card .box-img {
+    display: block;
+    width: 86%;
+    max-width: 360px;
+    height: auto;
+    object-fit: contain;
+    margin: 6px auto 26px;
+    filter: drop-shadow(0 22px 30px rgba(43, 20, 23, 0.22));
+  }
+  .box-card .origin {
+    font-family: var(--serif);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="top">
+  <div class="container">
+    <a href="#top" class="wordmark">Mom 'n Rock's</a>
+    <ul>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#wines">The Selección</a></li>
+      <li><a href="#boxes">Boxes</a></li>
+      <li><a href="#hotels">For Hotels</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="establishment">Est. Manila &nbsp;·&nbsp; 2018</div>
+  <h1 class="brand">Mom 'n&nbsp;Rock's</h1>
+  <div class="ornament">
+    <span class="line"></span><span class="diamond"></span><span class="line"></span>
+  </div>
+  <p class="tagline">A family-owned private-label wine house, founded in 2018.</p>
+  <p class="salud">Celebremos La Buena Vida.</p>
+  <a href="#story" class="scroll-cue">Our Story</a>
+</header>
+
+<!-- ============ STORY ============ -->
+<section class="block" id="story">
+  <div class="container">
+    <p class="eyebrow reveal">Our Story</p>
+    <h2 class="reveal">A legacy carried <em>from a Spanish vineyard</em><br/>to a Filipino table.</h2>
+    <div class="ornament reveal">
+      <span class="line"></span><span class="diamond"></span><span class="line"></span>
+    </div>
+
+    <div class="story-prose">
+      <p class="first-letter reveal">MomNrock's is a family-owned private-label wine house founded in 2018 by Jenny Bonnevie-Bautista. The year before, in 2017, Jenny travelled to Spain and walked the vineyards her late father had walked before her — retracing a legacy carried for decades at the family table.</p>
+
+      <p class="reveal">With Spanish winemakers at her side, she crafted a custom blend with the Filipino palate in mind: tuning the ratio of Garnacha to Tempranillo to reward the softer, naturally sweet tongue of Filipino drinkers. Generous fruit and gentle body come first; quiet structure follows.</p>
+
+      <p class="reveal">Every bottle since has carried that small inheritance forward — a private label, made for family, friends, and the kind of evenings that deserve a good story in a glass.</p>
+    </div>
+
+    <div class="signature-block reveal">
+      <div class="signed">Jenny B. Bautista</div>
+      <div class="role">Founder &nbsp;·&nbsp; MomNrock Wines</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE SELECCIÓN ============ -->
+<section class="block tinted" id="wines">
+  <div class="container">
+    <p class="eyebrow reveal">The Selección</p>
+    <h2 class="reveal">Three bottles, <em>three quiet pleasures.</em></h2>
+    <div class="ornament reveal">
+      <span class="line"></span><span class="diamond"></span><span class="line"></span>
+    </div>
+    <p class="lede reveal">Our portfolio is small and considered — a private-label red we craft ourselves, and two carefully chosen imports for the moments in between.</p>
+
+    <div class="wines-grid">
+      <article class="wine-card reveal">
+        <div class="bottle-placeholder"><span>Photo coming soon</span></div>
+        <div class="origin">Spain &nbsp;·&nbsp; Private Label</div>
+        <h3>Selección Privada<br/>Tempranillo Garnacha</h3>
+        <div class="sub">Produced &amp; bottled in Spain · 12% Alc</div>
+        <p>Ruby red, soft at the rim. Ripe cherry and dark plum on the nose, a touch of something earthier underneath. Garnacha does the talking on the palate — round fruit, gentle sweetness, easy to drink — while Tempranillo holds the line behind it.</p>
+        <div class="pairing">
+          <strong>Pairs With</strong>
+          Grilled lamb · Iberico ham · Kaldereta · Aged Manchego
+        </div>
+      </article>
+
+      <article class="wine-card reveal">
+        <img class="bottle" src="assets/betheone-shiraz.png" alt="Betheone Shiraz bottle" loading="lazy" />
+        <div class="origin">Australia &nbsp;·&nbsp; Curated</div>
+        <h3>Betheone<br/>Shiraz</h3>
+        <div class="sub">Australian Shiraz · Bold, food-friendly</div>
+        <p>Deep crimson with violet edges. Generous on the nose — ripe blackberry, dark plum, blueberry, cracked black pepper, and a whisper of vanilla oak. Full-bodied and silky, with plush tannins carrying the wine to a warm, peppery finish.</p>
+        <div class="pairing">
+          <strong>Pairs With</strong>
+          Grilled rib-eye · Lamb chops · Crispy pata · Lechon
+        </div>
+      </article>
+
+      <article class="wine-card reveal">
+        <img class="bottle" src="assets/prospero-moscato.png" alt="Prospero Moscato Espumoso bottle" loading="lazy" />
+        <div class="origin">Spain &nbsp;·&nbsp; Curated</div>
+        <h3>Prospero<br/>Moscato</h3>
+        <div class="sub">Sparkling Moscato Espumoso · Produced in Spain</div>
+        <p>Radiant golden yellow, crowned by a steady, fine stream of bubbles. A floral garden on the nose — jasmine, white blossoms, ripe apricot — layered with sun-warmed peach and a gentle touch of honey. Light, airy, and charmingly fruity.</p>
+        <div class="pairing">
+          <strong>Pairs With</strong>
+          Brunch · Leche flan · Mango float · Fresh oysters
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRESENTATION BOXES ============ -->
+<section class="block" id="boxes">
+  <div class="container">
+    <p class="eyebrow reveal">The Add-On</p>
+    <h2 class="reveal">A bottle deserves <em>a proper arrival.</em></h2>
+    <div class="ornament reveal">
+      <span class="line"></span><span class="diamond"></span><span class="line"></span>
+    </div>
+    <p class="lede reveal">Solid-wood single-bottle presentation boxes — laser-engraved with your crest and fitted with a four-piece accessory set: aerating pourer, foil cutter, drip-ring coaster, and bottle opener. The finishing touch for gifting, in-room service, and corporate giving.</p>
+
+    <div class="boxes-grid">
+      <article class="box-card reveal">
+        <img class="box-img" src="assets/box-blonde-wood.png" alt="Blonde wood single-bottle wine presentation box with four-piece accessory set" loading="lazy" />
+        <div class="origin">Solid Wood &nbsp;·&nbsp; Laser-Engraved</div>
+        <h3>Blonde Wood</h3>
+        <div class="sub">Natural light grain · Metal clasp closure</div>
+        <p>A warm, natural-grain case with a soft matte finish. Fits one standard 750ml bottle and the full accessory set, with your crest engraved on the lid. Light, bright, and quietly elegant.</p>
+      </article>
+
+      <article class="box-card reveal">
+        <img class="box-img" src="assets/box-mahogany.png" alt="Mahogany finish single-bottle wine presentation box with four-piece accessory set" loading="lazy" />
+        <div class="origin">Solid Wood &nbsp;·&nbsp; Laser-Engraved</div>
+        <h3>Mahogany Finish</h3>
+        <div class="sub">Deep cherry tone · Brass clasp closure</div>
+        <p>A rich, glossy mahogany case for a more formal register. Fits one standard 750ml bottle and the full accessory set, crest engraved on the lid. Stately, gift-ready, and built to impress.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOR HOTELS ============ -->
+<section class="block dark" id="hotels">
+  <div class="container">
+    <p class="eyebrow reveal">For Hotels &amp; Restaurants</p>
+    <h2 class="reveal">A private cellar, <em>at the service of yours.</em></h2>
+    <div class="ornament reveal">
+      <span class="line"></span><span class="diamond"></span><span class="line"></span>
+    </div>
+    <p class="lede reveal">We work with hotels, restaurants, and venues across the Philippines on private-label wine programmes — from custom bottling to custom labels, with the operational details quietly handled.</p>
+
+    <div class="hotels-grid">
+      <div class="service reveal">
+        <div class="num">i.</div>
+        <div>
+          <h4>Private-Label Bottling</h4>
+          <p>Your house wine, crafted in Spain to your specifications and bottled under your name. Minimum order from one hundred bottles.</p>
+        </div>
+      </div>
+      <div class="service reveal">
+        <div class="num">ii.</div>
+        <div>
+          <h4>Custom Front &amp; Back Stickers</h4>
+          <p>Textured paper labels, applied front and back. Foil stamping and embossed printing available on request.</p>
+        </div>
+      </div>
+      <div class="service reveal">
+        <div class="num">iii.</div>
+        <div>
+          <h4>Bespoke Wine List Microsites</h4>
+          <p>A one-page wine list website in the spirit of old-money heritage, with a custom QR code for table tents and menu cards.</p>
+        </div>
+      </div>
+      <div class="service reveal">
+        <div class="num">iv.</div>
+        <div>
+          <h4>Barcode &amp; Inventory Linking</h4>
+          <p>Custom barcode creation and direct linking to your existing inventory database — at no additional charge.</p>
+        </div>
+      </div>
+      <div class="service reveal">
+        <div class="num">v.</div>
+        <div>
+          <h4>Free Metro Manila Delivery</h4>
+          <p>Direct to the hotel's designated receiving point, included with every order within Metro Manila.</p>
+        </div>
+      </div>
+      <div class="service reveal">
+        <div class="num">vi.</div>
+        <div>
+          <h4>Post-Sale Storage Support</h4>
+          <p>Guidance on cellar conditions, service temperature, and the proper care of every bottle we deliver.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="block" id="contact">
+  <div class="container">
+    <p class="eyebrow reveal">Contact</p>
+    <h2 class="reveal">Begin a <em>conversation.</em></h2>
+    <div class="ornament reveal">
+      <span class="line"></span><span class="diamond"></span><span class="line"></span>
+    </div>
+    <p class="lede reveal">For wholesale enquiries, private-label collaborations, or simply to taste — we would be delighted to hear from you. Tell us a little about your establishment and we'll prepare a quotation.</p>
+
+    <form class="quote-form reveal" id="quoteForm">
+      <div class="grid2">
+        <div class="field">
+          <label for="qf-name">Your Name</label>
+          <input type="text" id="qf-name" name="name" required />
+        </div>
+        <div class="field">
+          <label for="qf-biz">Establishment / Business</label>
+          <input type="text" id="qf-biz" name="business" required />
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label for="qf-email">Email</label>
+          <input type="email" id="qf-email" name="email" required />
+        </div>
+        <div class="field">
+          <label for="qf-phone">Phone</label>
+          <input type="tel" id="qf-phone" name="phone" />
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label for="qf-interest">Of Interest</label>
+          <select id="qf-interest" name="interest">
+            <option>Selección Privada Tempranillo Garnacha</option>
+            <option>Betheone Shiraz</option>
+            <option>Prospero Moscato</option>
+            <option>Wine Presentation Boxes</option>
+            <option>Private-label programme</option>
+            <option>Not sure yet — please advise</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="qf-qty">Estimated Quantity</label>
+          <input type="text" id="qf-qty" name="quantity" placeholder="e.g. 100 bottles" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="qf-msg">Message</label>
+        <textarea id="qf-msg" name="message" placeholder="Tell us about your venue and what you have in mind."></textarea>
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="btn-quote">Request a Quote</button>
+        <p class="form-note">Send us the details and Jennifer will personally prepare a wholesale quotation for your establishment.</p>
+        <p class="form-ok" id="formOk">Thank you — your enquiry is on its way. We'll be in touch shortly. ¡Salud!</p>
+      </div>
+    </form>
+
+    <p class="eyebrow reveal" style="margin-top: 8px;">Or reach us directly</p>
+    <div class="contact-card reveal">
+      <div class="label">By Telephone</div>
+      <div class="value"><a href="tel:+639178853669">0917 885 3669</a></div>
+      <div class="divider"></div>
+      <div class="label">By Email</div>
+      <div class="value"><a href="mailto:miguel@bonnevie-bautista.com">miguel@bonnevie-bautista.com</a></div>
+      <div class="divider"></div>
+      <div class="label">Based In</div>
+      <div class="value" style="font-size:22px;">Manila, Philippines</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wordmark-foot">Mom 'n Rock's</div>
+  <div class="tag">Celebremos La Buena Vida. ¡Salud!</div>
+  <div class="ornament">
+    <span class="line"></span><span class="diamond"></span><span class="line"></span>
+  </div>
+  <!-- TODO: replace href="#" with the real Instagram / Facebook page URLs -->
+  <div class="socials">
+    <a href="#" target="_blank" rel="noopener" aria-label="MomNrock Wines on Instagram">Instagram</a>
+    <a href="#" target="_blank" rel="noopener" aria-label="MomNrock Wines on Facebook">Facebook</a>
+  </div>
+  <div class="meta">
+    &copy; 2026 MomNrock Wines &nbsp;·&nbsp; Manila, Philippines &nbsp;·&nbsp; <a href="tel:+639178853669">0917 885 3669</a>
+  </div>
+</footer>
+
+<script>
+  // Reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Request-a-Quote — no backend yet: compose a prefilled email.
+  // When hosting is chosen, swap this for a Formspree/API POST.
+  const qf = document.getElementById('quoteForm');
+  if (qf) {
+    qf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const v = id => (document.getElementById(id)?.value || '').trim();
+      const subject = 'Quote Request — ' + (v('qf-biz') || v('qf-name') || 'MomNrock Wines');
+      const body =
+        'Name: ' + v('qf-name') + '\n' +
+        'Establishment: ' + v('qf-biz') + '\n' +
+        'Email: ' + v('qf-email') + '\n' +
+        'Phone: ' + v('qf-phone') + '\n' +
+        'Of Interest: ' + v('qf-interest') + '\n' +
+        'Estimated Quantity: ' + v('qf-qty') + '\n\n' +
+        'Message:\n' + v('qf-msg') + '\n';
+      window.location.href =
+        'mailto:miguel@bonnevie-bautista.com?subject=' +
+        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      document.getElementById('formOk').style.display = 'block';
+    });
+  }
+</script>
+
+</body>
+</html>

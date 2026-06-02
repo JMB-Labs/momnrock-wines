@@ -103,10 +103,64 @@
     transition: color .2s ease;
   }
   nav.top a:hover { color: var(--burgundy); }
+
+  /* hamburger — hidden on desktop */
+  .nav-toggle { display: none; }
+  .nav-burger { display: none; }
+  .nav-burger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--burgundy);
+    border-radius: 2px;
+    transition: transform .3s ease, opacity .2s ease;
+  }
+  .nav-burger span + span { margin-top: 5px; }
+
   @media (max-width: 720px) {
-    nav.top ul { gap: 18px; }
-    nav.top a { font-size: 12px; letter-spacing: 1px; }
+    nav.top .container { padding-top: 16px; padding-bottom: 16px; position: static; }
     .wordmark { font-size: 26px; }
+
+    .nav-burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 40px; height: 34px;
+      cursor: pointer;
+      padding: 6px 8px;
+    }
+    nav.top ul {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(244, 237, 221, 0.97);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(122, 30, 46, 0.12);
+      box-shadow: 0 18px 30px -22px rgba(43, 20, 23, 0.5);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height .35s ease, opacity .25s ease;
+    }
+    nav.top ul li {
+      width: 100%;
+      text-align: center;
+      border-top: 1px solid rgba(122, 30, 46, 0.08);
+    }
+    nav.top ul li a {
+      display: block;
+      padding: 16px 0;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+    .nav-toggle:checked ~ ul {
+      max-height: 340px;
+      opacity: 1;
+    }
+    .nav-toggle:checked ~ .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle:checked ~ .nav-burger span:nth-child(2) { opacity: 0; }
+    .nav-toggle:checked ~ .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   }
 
   /* ============ HERO ============ */
@@ -671,6 +725,25 @@
     color: var(--gold);
     margin-bottom: 18px;
   }
+
+  /* ===== Mobile tuning ===== */
+  @media (max-width: 600px) {
+    .container { padding: 0 22px; }
+    section.block { padding: 76px 0; }
+    .hero { padding: 110px 22px 72px; }
+    .hero .establishment { letter-spacing: 4px; margin-bottom: 26px; }
+    .hero .salud { margin-bottom: 44px; }
+    .lede { font-size: 17px; margin-bottom: 40px; }
+    .story-prose { font-size: 17px; }
+    .story-prose .first-letter::first-letter { font-size: 60px; padding: 8px 10px 0 0; }
+    .ornament .line { width: 56px; }
+    .wine-card { padding: 38px 24px 30px; }
+    .quote-form .grid2 { grid-template-columns: 1fr; gap: 0; }
+    .contact-card { padding: 40px 24px; }
+    .contact-card .value { font-size: 24px; }
+    footer { padding: 48px 24px 32px; }
+    footer .socials { gap: 22px; }
+  }
 </style>
 </head>
 <body>
@@ -679,7 +752,9 @@
 <nav class="top">
   <div class="container">
     <a href="#top" class="wordmark">Mom 'n Rock's</a>
-    <ul>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></label>
+    <ul id="nav-menu">
       <li><a href="#story">Story</a></li>
       <li><a href="#wines">The Selección</a></li>
       <li><a href="#boxes">Boxes</a></li>
@@ -963,6 +1038,12 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Close mobile menu after tapping a link
+  const navToggle = document.getElementById('nav-toggle');
+  document.querySelectorAll('#nav-menu a').forEach(a => {
+    a.addEventListener('click', () => { if (navToggle) navToggle.checked = false; });
+  });
 
   // Request-a-Quote — no backend yet: compose a prefilled email.
   // When hosting is chosen, swap this for a Formspree/API POST.

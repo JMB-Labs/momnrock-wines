@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MomNrock Wines — Celebremos La Buena Vida</title>
-<meta name="description" content="MomNrock Wines — a family-owned private-label wine house founded in 2018 by Jenny Bonnevie-Bautista. Spanish wines tuned for the Filipino palate." />
+<title>Momnrock Luxury Wines — Celebremos La Buena Vida</title>
+<meta name="description" content="Momnrock Luxury Wines — a family-owned private-label wine house founded in 2018 by Jenny Bonnevie-Bautista. Spanish wines tuned for the Filipino palate." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet" />
@@ -85,6 +85,18 @@
     line-height: 1;
     letter-spacing: .5px;
     text-decoration: none;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wordmark-sub {
+    font-family: var(--serif);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold-soft, #B58E3C);
+    margin-top: 3px;
   }
   nav.top ul {
     list-style: none;
@@ -630,6 +642,16 @@
     line-height: 1;
     margin-bottom: 18px;
   }
+  footer .wordmark-foot-sub {
+    display: block;
+    font-family: var(--serif);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #C7B894;
+    margin-top: 8px;
+  }
   footer .tag {
     font-family: var(--serif);
     font-style: italic;
@@ -751,7 +773,7 @@
 <!-- ============ NAV ============ -->
 <nav class="top">
   <div class="container">
-    <a href="#top" class="wordmark">Mom 'n Rock's</a>
+    <a href="#top" class="wordmark">Mom 'n Rock's<span class="wordmark-sub">Luxury Wines</span></a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
     <label for="nav-toggle" class="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></label>
     <ul id="nav-menu">
@@ -786,7 +808,7 @@
     </div>
 
     <div class="story-prose">
-      <p class="first-letter reveal">MomNrock's is a family-owned private-label wine house founded in 2018 by Jenny Bonnevie-Bautista. The year before, in 2017, Jenny travelled to Spain and walked the vineyards her late father had walked before her — retracing a legacy carried for decades at the family table.</p>
+      <p class="first-letter reveal">Momnrock Luxury Wines is a family-owned private-label wine house founded in 2018 by Jenny Bonnevie-Bautista. The year before, in 2017, Jenny travelled to Spain and walked the vineyards her late father had walked before her — retracing a legacy carried for decades at the family table.</p>
 
       <p class="reveal">With Spanish winemakers at her side, she crafted a custom blend with the Filipino palate in mind: tuning the ratio of Garnacha to Tempranillo to reward the softer, naturally sweet tongue of Filipino drinkers. Generous fruit and gentle body come first; quiet structure follows.</p>
 
@@ -795,7 +817,7 @@
 
     <div class="signature-block reveal">
       <div class="signed">Jenny B. Bautista</div>
-      <div class="role">Founder &nbsp;·&nbsp; MomNrock Wines</div>
+      <div class="role">Founder &nbsp;·&nbsp; Momnrock Luxury Wines</div>
     </div>
   </div>
 </section>
@@ -1012,18 +1034,18 @@
 
 <!-- ============ FOOTER ============ -->
 <footer>
-  <div class="wordmark-foot">Mom 'n Rock's</div>
+  <div class="wordmark-foot">Mom 'n Rock's<span class="wordmark-foot-sub">Luxury Wines</span></div>
   <div class="tag">Celebremos La Buena Vida. ¡Salud!</div>
   <div class="ornament">
     <span class="line"></span><span class="diamond"></span><span class="line"></span>
   </div>
   <!-- TODO: replace href="#" with the real Instagram / Facebook page URLs -->
   <div class="socials">
-    <a href="#" target="_blank" rel="noopener" aria-label="MomNrock Wines on Instagram">Instagram</a>
-    <a href="#" target="_blank" rel="noopener" aria-label="MomNrock Wines on Facebook">Facebook</a>
+    <a href="#" target="_blank" rel="noopener" aria-label="Momnrock Luxury Wines on Instagram">Instagram</a>
+    <a href="#" target="_blank" rel="noopener" aria-label="Momnrock Luxury Wines on Facebook">Facebook</a>
   </div>
   <div class="meta">
-    &copy; 2026 MomNrock Wines &nbsp;·&nbsp; Manila, Philippines &nbsp;·&nbsp; <a href="tel:+639178853669">0917 885 3669</a>
+    &copy; 2026 Momnrock Luxury Wines &nbsp;·&nbsp; Manila, Philippines &nbsp;·&nbsp; <a href="tel:+639178853669">0917 885 3669</a>
   </div>
 </footer>
 
@@ -1052,7 +1074,7 @@
     qf.addEventListener('submit', function (e) {
       e.preventDefault();
       const v = id => (document.getElementById(id)?.value || '').trim();
-      const subject = 'Quote Request — ' + (v('qf-biz') || v('qf-name') || 'MomNrock Wines');
+      const subject = 'Quote Request — ' + (v('qf-biz') || v('qf-name') || 'Momnrock Luxury Wines');
       const body =
         'Name: ' + v('qf-name') + '\n' +
         'Establishment: ' + v('qf-biz') + '\n' +
